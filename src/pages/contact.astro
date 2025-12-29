@@ -79,36 +79,39 @@ if (Astro.request.method === "POST") {
   </div>
 
   <div class="contact-section">
-    <div class="info">
-      <p>
-        If you have any questions or concerns, please feel free to reach out to us at
-        <a target="_blank" href="mailto:info@cougarcs.com"> info@cougarcs.com </a>
-        or via this form.
-      </p>
+    <div class="container">
+      <div class="info">
+        <p>
+          If you have any questions or concerns, please feel free to reach out to us at
+          <a target="_blank" href="mailto:info@cougarcs.com"> info@cougarcs.com </a>
+          or via this form.
+        </p>
 
-      <br />
+        <br />
 
-      <p>
-        You can also join our <a href="https://discord.gg/wEagwaXS7F" target="_blank"
-          >Discord</a
-        >, follow us on <a href="https://www.instagram.com/cougarcs_uh/" target="_blank"
-          >Instagram</a
-        >, or connect with us on <a
-          href="https://www.linkedin.com/company/cougarcs-uh/"
-          target="_blank">LinkedIn</a
-        >!
-      </p>
+        <p>
+          You can also join our <a href="https://discord.gg/wEagwaXS7F" target="_blank"
+            >Discord</a
+          >, follow us on <a href="https://www.instagram.com/cougarcs_uh/" target="_blank"
+            >Instagram</a
+          >, or connect with us on <a
+            href="https://www.linkedin.com/company/cougarcs-uh/"
+            target="_blank">LinkedIn</a
+          >!
+        </p>
 
-      <br />
+        <br />
 
-      <p>
-        Have someone specific in mind? Our officers are listed on the
-        <a href="/officers">Officers page</a>.
-      </p>
-    </div>
+        <p>
+          Have someone specific in mind? Our officers are listed on the
+          <a href="/officers">Officers page</a>.
+        </p>
+      </div>
+    
 
-    <div class="contact-form">
-      <ContactForm {errors} />
+      <div class="contact-form">
+        <ContactForm {errors} />
+      </div>
     </div>
   </div>
 </BaseLayout>
@@ -138,12 +141,6 @@ if (Astro.request.method === "POST") {
   }
 
   .contact-section {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 2rem;
-
-    padding: 2rem 2rem;
-
     min-height: 70vh;
 
     font-size: 1.1rem;
@@ -152,6 +149,14 @@ if (Astro.request.method === "POST") {
     background-color: #fff;
     background-image: radial-gradient(#cccdce 1.25px, #fff 1.25px);
     background-size: 30px 30px;
+
+    .container {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      padding: 2rem;
+
+    }
 
     .contact-form {
       width: 100%;
@@ -172,9 +177,14 @@ if (Astro.request.method === "POST") {
     }
 
     @media screen and (min-width: 769px) {
-      grid-template-columns: 1fr 1fr;
-
-      padding: 3rem 4rem;
+      .container {
+        grid-template-columns: 1fr 1fr;
+        padding: 3rem 4rem;
+        gap: 3rem;
+        
+        max-width: 100rem;
+        margin: 0 auto;
+      }
 
       .info {
         padding: 0.25rem;
