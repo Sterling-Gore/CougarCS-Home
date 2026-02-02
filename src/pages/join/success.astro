@@ -20,7 +20,7 @@ const sessionId = Astro.url.searchParams.get("session_id") || "";
 // );
 
 let checkoutSession;
-if (legacyResponse || sessionId) {
+if (sessionId) {
   checkoutSession = await stripe.checkout.sessions.retrieve(sessionId);
 } else {
   Astro.redirect("/join");
@@ -42,6 +42,21 @@ const memberFirstName = checkoutSession?.customer_details?.name?.split(" ")[0];
       Welcome to the club! You've taken the first step towards ensuring a successful
       academic and professional career.
     </p>
+
+    <div class="claim-card">
+      <div class="claim-copy">
+        <h3>Claim your membership on Discord</h3>
+        <p>
+          Use the command below in our server with the same email and 7-digit PSID you just used
+          at checkout to unlock your member role.
+        </p>
+      </div>
+      <img
+        src="/join/claim_membership.png"
+        alt="Example Discord command showing /claim psid and email fields"
+      />
+    </div>
+
     <p>
       If you have any questions or concerns <a href="/contact">
         please feel free to reach out to us.
@@ -74,6 +89,38 @@ const memberFirstName = checkoutSession?.customer_details?.name?.split(" ")[0];
       color: #07883b;
     }
 
+    .claim-card {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: 1fr;
+      align-items: center;
+      padding: 1.5rem;
+      border-radius: 1rem;
+      background: #ffffff;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+
+      h3 {
+        margin: 0 0 0.25rem;
+        font-family: "Chakra Petch", sans-serif;
+        font-size: 1.3rem;
+        color: #0b5d2a;
+      }
+
+      p {
+        margin: 0;
+        color: #1f1f1f;
+      }
+
+      img {
+        width: 100%;
+        max-width: 520px;
+        justify-self: center;
+        border-radius: 0.75rem;
+        border: 1px solid #e0e0e0;
+        background: #0f172a;
+      }
+    }
+
     @media screen and (min-width: 768px) {
       padding: 10rem 4rem;
       height: 100;
@@ -89,6 +136,12 @@ const memberFirstName = checkoutSession?.customer_details?.name?.split(" ")[0];
 
       p {
         max-width: 24rem;
+      }
+
+      .claim-card {
+        grid-template-columns: 1.2fr 1fr;
+        gap: 2rem;
+        max-width: 45rem;
       }
     }
   }
